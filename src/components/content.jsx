@@ -59,6 +59,11 @@ const handleToggle = () => {
     } else {
       setcurrmanager([]); // No data found
     }
+    setdata({
+      site: "",
+    username: "",
+    password: "",
+    })
   };
 
   return (
