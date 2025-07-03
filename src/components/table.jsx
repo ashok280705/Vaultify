@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import Usercontext from "../context/context";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Table = () => {
   const { currmanager, setcurrmanager } = useContext(Usercontext);
@@ -14,11 +16,12 @@ const Table = () => {
     vault[currentUser] = updatedEntries;
     localStorage.setItem("vault-data", JSON.stringify(vault));
     setcurrmanager(updatedEntries);
+    toast.success("Deleted successfully!");
   };
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
-    alert("Text copied to the clipboard");
+    toast.success("Copied to clipboard!");
   };
 
   const handleEdit = (idx, item) => {
@@ -36,6 +39,7 @@ const Table = () => {
     localStorage.setItem("vault-data", JSON.stringify(vault));
     setcurrmanager(updatedEntries);
     setEditIndex(null);
+    toast.success("Updated successfully!");
   };
 
   return (
