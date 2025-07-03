@@ -1,17 +1,71 @@
-<<<<<<< HEAD
 # Vaultify
-This is nothing but an password manager 
-=======
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Vaultify is a project designed to securely store and manage sensitive data, such as passwords, secrets, or confidential files. This repository offers a robust solution for users who require a safe, efficient, and user-friendly vault for their private information.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Secure storage for passwords, secrets, and files
+- User authentication and authorization
+- Encryption of sensitive data
+- Intuitive user interface
+- Easy setup and deployment
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
->>>>>>> 8e91fef (Initial commit: push all project files)
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (version X.X.X or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- (List any other dependencies required)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ashok280705/Vaultify.git
+   cd Vaultify
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Configure environment variables:**
+   - Create a `.env` file in the root directory.
+   - Add necessary configuration (e.g., database URL, encryption keys).
+
+4. **Run the application:**
+   ```bash
+   npm start
+   # or
+   yarn start
+   ```
+
+## Usage
+
+- Access the application at `http://localhost:3000` (or the configured port).
+- Register an account and start securely storing your secrets.
+
+## Contributing
+
+Contributions are welcome! Please open issues or submit pull requests for any improvements or bug fixes.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a pull request
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+- Thanks to all contributors and open-source libraries used in this project.
+
+---
+Feel free to customize this README with more specific details about Vaultify as your project evolves!
