@@ -1,6 +1,9 @@
-import React, { useState, useContext,useRef,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Usercontext from "../context/context";
 import Table from "./table";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 const Content = () => {
   const { currmanager, setcurrmanager } = useContext(Usercontext);
   const [data, setdata] = useState({
@@ -10,9 +13,10 @@ const Content = () => {
   });
   const [passwordType, setPasswordType] = useState("password");
 
-const handleToggle = () => {
-  setPasswordType((prev) => (prev === "password" ? "text" : "password"));
-};
+  const handleToggle = () => {
+    setPasswordType((prev) => (prev === "password" ? "text" : "password"));
+  };
+
   useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
     if (currentUser) {
@@ -24,16 +28,19 @@ const handleToggle = () => {
   const Handlechange = (e) => {
     setdata({ ...data, [e.target.name]: e.target.value });
   };
+
   const HandleClick = () => {
     if (!data.site || !data.username || !data.password) {
-      alert("All fields are required!");
+      toast.error("All fields are required!");
       return;
     }
+
     const currentUser = localStorage.getItem("currentUser");
     if (!currentUser) {
-      alert("No user logged in");
+      toast.error("No user logged in");
       return;
     }
+
     const newEntry = {
       site: data.site,
       username: data.username,
@@ -52,18 +59,9 @@ const handleToggle = () => {
 
     localStorage.setItem("vault-data", JSON.stringify(updatedVault));
 
-    if (currentUser && updatedVault[currentUser]) {
-      setcurrmanager(updatedVault[currentUser]); // ✅ Only
-      // current user's data
-      console.log(updatedVault[currentUser]);
-    } else {
-      setcurrmanager([]); // No data found
-    }
-    setdata({
-      site: "",
-    username: "",
-    password: "",
-    })
+    setcurrmanager(updatedVault[currentUser]);
+    setdata({ site: "", username: "", password: "" });
+    toast.success("Password added!");
   };
 
   return (
@@ -74,7 +72,7 @@ const handleToggle = () => {
       </div>
 
       {/* Foreground Container */}
-      <div className="container max-w-4xl m-auto my-4 h-[80vh]  rounded-xl shadow-lg p-6 ">
+      <div className="container max-w-4xl m-auto my-4 h-[80vh] rounded-xl shadow-lg p-6 ">
         <div className="flex items-center justify-center ">
           <div className="text-3xl font-bold text-black px-5">
             <span className="text-green-600">&lt;</span>
@@ -83,11 +81,11 @@ const handleToggle = () => {
             <span className="text-green-600">/&gt;</span>
           </div>
         </div>
+
         <div className="flex items-center justify-center p-2">
-          <h1 className="text-2l font-light text-green-900">
-            Your own password manager
-          </h1>
+          <h1 className="text-2l font-light text-green-900">Your own password manager</h1>
         </div>
+
         <div>
           <input
             name="site"
@@ -97,6 +95,7 @@ const handleToggle = () => {
             placeholder="Enter your URL"
             className="w-full rounded-2xl p-2 border-1 border-green-500 "
           />
+
           <div className="flex items-center justify-between ">
             <input
               name="username"
@@ -106,6 +105,7 @@ const handleToggle = () => {
               placeholder="Enter Username "
               className="w-[70%] p-2 m-2 border-1 border-green-500 rounded-2xl"
             />
+
             <div className="w-[20%] m-2 relative">
               <input
                 name="password"
@@ -115,7 +115,10 @@ const handleToggle = () => {
                 placeholder="Enter password"
                 className="w-full p-2 pr-10 border-1 border-green-500 rounded-2xl"
               />
-              <button className="absolute right-4 top-6 -translate-y-1/2 cursor-pointer" onClick={handleToggle}>
+              <button
+                className="absolute right-4 top-6 -translate-y-1/2 cursor-pointer"
+                onClick={handleToggle}
+              >
                 <lord-icon
                   src="https://cdn.lordicon.com/dicvhxpz.json"
                   trigger="hover"
@@ -126,12 +129,11 @@ const handleToggle = () => {
               </button>
             </div>
           </div>
+
           <div className="flex justify-center items-center p-4">
             <button
               className="flex items-center gap-3 bg-gradient-to-r from-green-400 to-green-600 text-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 font-semibold text-lg tracking-wide cursor-pointer"
-              onClick={() => {
-                HandleClick();
-              }}
+              onClick={HandleClick}
             >
               <span>Add Password</span>
               <lord-icon
@@ -143,6 +145,7 @@ const handleToggle = () => {
               ></lord-icon>
             </button>
           </div>
+
           <div className="max-h-[250px] overflow-y-auto mt-4 rounded-lg border border-green-200 shadow-inner">
             <Table />
           </div>
